@@ -1,7 +1,5 @@
 # News-Quality-Scoring
 
-# 📰 AI-Powered News Quality Assessment  
-
 ## 📌 Introduction  
 
 With the ever-growing amount of online content, it is essential to assess news article quality without relying on traditional metrics like **interactions and read time**. Many articles use **clickbait titles** or **inflated content** to manipulate engagement, and with the rise of **Generative AI**, the internet is flooded with **low-value, AI-generated content**.  
