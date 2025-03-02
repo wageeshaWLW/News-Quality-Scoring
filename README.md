@@ -45,9 +45,3 @@ Each article is analyzed through **six independent NLP-based evaluation tasks**:
 - Uses:  
   - **Named Entity Recognition (NER) + FEVER-trained models**.  
   - **Retrieval-Augmented Generation (RAG) models for verification**.  
-
----
-
-## 📁 Project Structure  
-
-
