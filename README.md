@@ -1,47 +1,64 @@
-# News-Quality-Scoring
+# News Quality Scoring: An Ensemble of NLP Methods to Assess News Quality
 
-## 📌 Introduction  
+## Authors
+- Oday Najad ([oday.najad@studenti.unipd.it](mailto:oday.najad@studenti.unipd.it))
+- Tommaso Di Fant ([tommaso.difant@studenti.unipd.it](mailto:tommaso.difant@studenti.unipd.it))
+- Wageesha Widuranga ([wageeshawiduranga.waththeliyanage@studenti.unipd.it](mailto:wageeshawiduranga.waththeliyanage@studenti.unipd.it))
 
-With the ever-growing amount of online content, it is essential to assess news article quality without relying on traditional metrics like **interactions and read time**. Many articles use **clickbait titles** or **inflated content** to manipulate engagement, and with the rise of **Generative AI**, the internet is flooded with **low-value, AI-generated content**.  
+## Overview
+This project aims to assess various aspects of news article quality using Natural Language Processing (NLP) techniques. The framework evaluates articles based on multiple criteria, including:
 
-This project introduces an **NLP-driven framework** to evaluate news articles based on **six key quality criteria**, aiming to provide **objective, human-relevant scores** without relying on pre-existing ranking algorithms.  
+- Clickbait Detection
+- Information Density Scoring
+- Writing Quality Scoring
+- AI-Generated Content Detection
+- Plagiarism Detection
+- Fact-Checking
 
----
+The goal is to provide an automated system to rate news articles objectively, reducing the influence of misleading or low-quality content in digital media.
 
-## 🏗 Methodology  
+## Implementation Details
 
-Each article is analyzed through **six independent NLP-based evaluation tasks**:  
+### 1. Clickbait Detection
+**Model:** DistilBERT (DistilBertForSequenceClassification)
+- **Dataset:** CSV file with clickbait headlines
+- **Training:** Tokenization with DistilBertTokenizer
+- **Evaluation Metrics:** Accuracy, Precision, Recall, F1 Score
 
-### 1️⃣ **Clickbait Title Detection**  
-- Detects **misleading, exaggerated, or vague** titles.  
-- Uses **BERT, RoBERTa**, and transformer-based models.  
 
-### 2️⃣ **Information Density Scoring**  
-- Measures **meaningful information vs. fluff**.  
-- Techniques:  
-  - **TF-IDF & Named Entity Recognition (NER)** for factual density.  
-  - **Summarization models (T5, BART)** for redundancy analysis.  
+### 2. Information Density
+**Model:** BART (facebook/bart-large-cnn)
+- **Dataset:** CNN/DailyMail news dataset
+- **Evaluation Metrics:** ROUGE-1, ROUGE-2, ROUGE-L
 
-### 3️⃣ **Writing Quality Scoring**  
-- Evaluates **grammar, readability, and coherence**.  
-- Uses:  
-  - **Linguistic metrics (Flesch-Kincaid, perplexity analysis)**.  
-  - **GPT-4/BLOOM fine-tuned for quality scoring**.  
 
-### 4️⃣ **AI-Generated Content Detection**  
-- Distinguishes between **human-written vs. AI-generated** text.  
-- Techniques:  
-  - **Perplexity-based models** (AI content is often lower in perplexity).  
-  - **Fine-tuned BERT/DetectGPT for classification**.  
+### 3. Writing Quality Scoring
+**Model:** DistilBERT with Multi-Task Learning (MDMT)
+- **Dataset:** Automatic Essay Scoring 2.0, CLEAR, ELLIPSE
+- **Evaluation Metrics:** Weighted Mean Squared Error (MSE)
 
-### 5️⃣ **Plagiarism Detection**  
-- Detects **copied or slightly modified** content.  
-- Methods:  
-  - **TF-IDF & n-gram similarity checks**.  
-  - **Semantic similarity using SBERT & Universal Sentence Encoder**.  
 
-### 6️⃣ **Fact-Checking**  
-- Verifies statements against **trusted external databases**.  
-- Uses:  
-  - **Named Entity Recognition (NER) + FEVER-trained models**.  
-  - **Retrieval-Augmented Generation (RAG) models for verification**.  
+### 4. AI-Generated Content Detection
+**Model:** DistilBERT with Binary Classification
+- **Dataset:** LLM-Detect AI Generated Text, artem9k/ai-text-detection-pile
+- **Evaluation Metrics:** Binary Cross Entropy Loss (BCE)
+
+
+### 5. Plagiarism Detection
+**Methods:**
+- Cosine Similarity
+- Jaccard Similarity
+- Containment Measure
+- Longest Common Subsequence (LCS)
+- **Dataset:** Webis-CPC-11
+- **Results:** Highest accuracy with Cosine Similarity
+
+### 6. Fact-Checking
+**Models:** BERT, RoBERTa, XLNet
+- **Dataset:** FEVER dataset (Fact Extraction and Verification)
+- **Evaluation Metrics:** Accuracy, Confusion Matrix
+
+
+
+
+
